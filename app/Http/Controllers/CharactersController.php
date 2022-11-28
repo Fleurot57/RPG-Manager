@@ -46,7 +46,7 @@ class CharactersController extends Controller
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'classe' => $request->get('classe'),
-            'user_id' => auth()->id(),
+            'user_id' => Auth::user()->id,
             'pv' => (random_int(0, 15)),
             'magie' => (random_int(0, 15)),
             'force' => (random_int(0, 15)),
