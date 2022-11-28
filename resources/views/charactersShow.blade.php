@@ -46,7 +46,15 @@
                       </div>
                   </div>
                   <div class="d-flex justify-content-between total font-weight-bold mt-4">
-                    <button>Modifier</button><button>Supprimer</button><button>Level UP</button>
+                    <button> <a href="{{ route('characters.edit', $character->id) }}">Modifier</a></button>
+
+                    <form method="post" action="{{ route('characters.destroy', $character->id) }}">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" >Supprimer</button>
+                    </form>
+                  
+                    <button>Level UP</button>
                   </div>
                 </div>
               </div>
