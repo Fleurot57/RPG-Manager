@@ -28,7 +28,7 @@
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                           <button type="button" class="btn btn-sm btn-outline-secondary">{{$character['id']}}</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                          <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('characters.show', $character->id) }}">voir</a></button>
                         </div>
                         <small class="text-muted">9 mins</small>
                       </div>

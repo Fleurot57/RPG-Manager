@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('classe');
-            $table->integer('pv') -> default()(random_int(0, 15));
-            $table->integer('magie')-> default()(random_int(0, 15));
-            $table->integer('force') -> default()(random_int(0, 15));
-            $table->integer('agility') -> default()(random_int(0, 15));
-            $table->integer('intelligence') -> default()(random_int(0, 15));
+            $table->integer('pv');
+            $table->integer('magie');
+            $table->integer('force');
+            $table->integer('agility');
+            $table->integer('intelligence');
             $table->timestamps();
         });
     }

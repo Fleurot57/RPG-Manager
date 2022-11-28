@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class characters extends Model
+class Characters extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    public $fillable = [
         'user_id',
         'name',
         'description',
@@ -20,4 +20,6 @@ class characters extends Model
         'agility',
         'intelligence',
     ];
+
+    private string $name;
 }

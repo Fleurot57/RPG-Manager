@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\characters;
+use App\Models\Characters;
 use App\Http\Requests\CharactersRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +17,7 @@ class CharactersController extends Controller
      */
     public function index()
     {
-        $characters = characters::all();
+        $characters = Characters::all();
         return view('characters')->with(['characters' => $characters]);
     }
 
@@ -57,12 +57,12 @@ class CharactersController extends Controller
 
         if($create){
 
-            $characters = characters::all();
+            $characters = Characters::all();
 
             return view('characters')->with(['characters' => $characters]);
-            // return redirect()
-            //         ->back()
-            //         ->with('success', 'Ton personnage a été créé avec succès, tu peux partir à l\'aventure !');
+            return redirect()
+                     ->back()
+                     ->with('success', 'Ton personnage a été créé avec succès, tu peux partir à l\'aventure !');
         }
 
     }
@@ -73,30 +73,11 @@ class CharactersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Characters $character)
     {
 
-        $characters = DB::table('characters')->get('id');
-
-
-        if (!array_key_exists($id, $characters)) {
-            return response('Not found', 404);
-        }
-        return view('charactersShow')->with([
-                      'CharactersInfos' => $characters[$id],
-                   ]);;
+        return view('charactersShow')->with(['character' => $character]);
     }
-
-    // {
-    //     if (!array_key_exists($id, static::$pokedex)) {
-    //         return response('Not found', 404);
-    //     }
-    //     return view('pokemon.show')
-    //         ->with([
-    //             'pokemonName' => $id,
-    //             'pokemonData' => static::$pokedex[$id],
-    //         ]);
-    // }
 
     /**
      * Show the form for editing the specified resource.
