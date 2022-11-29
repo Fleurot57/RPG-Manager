@@ -27,13 +27,14 @@ class LoginController extends Controller
         $password = $request->input('password');
         $login = Auth::attempt(['pseudo' => $pseudo, 'password' => $password]);
 
-        if(!$login)
+        if($login)
         {
-            return dd($login); // false
+            return redirect('characters')
+            ->with('success', 'Connexion reussi ! Vous etes à present connecté.'); // false
         }
     
-        return redirect('characters'); // true
+        return redirect('login')
+            ->with('alert', 'Connexion échouée ! Vérifiez votre mot de passe et/ou votre E-mail'); // true
 
     }
-    
 }

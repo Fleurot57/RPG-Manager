@@ -1,3 +1,18 @@
+@if(session()->has('success'))
+<div class="alert alert-success">
+  <div class="text-center">{{ session()->get('success') }}</div>
+</div>
+@endif
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 @extends('app')
 
 <!DOCTYPE html>
@@ -7,36 +22,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/characters.css')}}" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=MedievalSharp">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Taverne</title>
 </head>
 @section('content')
-<body>
-
-        <div class="album py-5 bg-light">
-            <div class="container">
-              <div class="row">
-                @foreach($characters as $key => $character)
-                <div class="col-md-4">
-                  <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_184b8e3c4f3%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_184b8e3c4f3%22%3E%3Crect%20width%3D%22348%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7109375%22%20y%3D%22120.15%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
-                    <div class="card-body">
-                      <p class="card-text">Nom du personnage : {{$character['name']}}</p>
-                      <p class="card-text">Description : {{$character['description']}}</p>
-                      <p class="card-text">Classe du personnage : {{$character['classe']}}</p>
-                      <p class="card-text">Stats {{$character['pv']}}{{$character['magie']}}{{$character['force']}}{{$character['agility']}}{{$character['intelligence']}}</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">{{$character['id']}}</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('characters.show', $character->id) }}">voir</a></button>
-                        </div>
-                        <small class="text-muted">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>       
-
-                @endforeach
+<body>       
+                <section class="py-5">
+                  <div class="container px-4 px-lg-5 mt-5">
+                    
+                      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                        @foreach($characters as $key => $character)
+                        <div class="col mb-4">
+                              <div class="card h-100">
+                                  <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                                  <div class="card-body p-4">
+                                      <div class="text-center">
+                                          <h5 class="fw-bolder">{{$character['name']}}</h5>
+                                          <span>{{$character['classe']}}</span>
+                                      </div>
+                                  </div>
+                                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ route('characters.show', $character->id) }}">Détails</a></div>
+                                    </div>
+                              </div>
+                          </div>
+                          @endforeach
+              </section>
 </body>
 @endsection
 </html>

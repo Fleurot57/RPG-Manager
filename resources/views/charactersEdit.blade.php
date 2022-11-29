@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/charactersCreate.css')}}" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=MedievalSharp">
-    <title>Créer un personnage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Modifier ton personnage</title>
 </head>
 <body>
     
@@ -22,13 +23,12 @@
         {{ session()->get('message') }}
     </div>
 @endif
-<div class="form-center">
-<form action="{{ route('characters.update', $character->id) }}" method="POST">
+<form class="form-center" action="{{ route('characters.update', $character->id) }}" method="POST">
 
   @csrf
   @method('PUT')
   {{ session('success') }}
-  <h2>Modifier un nouveau personnage</h2>
+  <h2>Modifier mon personnage</h2>
 
     <input placeholder="Nom du personnage" type="text" name="name" value="{{ old('name', $character->name) }}"></input>
     <input placeholder="Histoire du personnage" type="text" name="description" value="{{ old('description', $character->description) }}"></input>
