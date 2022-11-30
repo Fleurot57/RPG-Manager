@@ -16,10 +16,11 @@
             <a href="{{ url('characters') }}"><li class="btn-navbar">Taverne</li></a>
             @auth
             <a href="{{ url('characters/create') }}"><li class="btn-navbar">Mes personnages</li></a>
+            <a href="{{ url('groups/create') }}"><li class="btn-navbar">Mes groupes</li></a>
             <div class="btn-auth">
                 <div class="text-auth">Bonjour avanturier {{Auth::user()->pseudo}}</div>
             <a href="{{ url('logout') }}"><li class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i></li></a>
-            <div>
+            </div>
             @else
             <div class="btn-auth">
                 <a href="{{ url('login') }}"><li class="btn-navbar">SE CONNECTER</li></a>

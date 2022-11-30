@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Groups;
 use Illuminate\Http\Request;
+use App\Http\Requests\GroupsRequest;
+use Illuminate\Support\Facades\Auth;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 class GroupsController extends Controller
 {
@@ -13,7 +17,8 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        return view('Groups.groups');
+        $groups = Groups::all();
+        return view('Groups.groups')->with(['groups' => $groups]);
     }
 
     /**
@@ -23,7 +28,7 @@ class GroupsController extends Controller
      */
     public function create()
     {
-        //
+        return view('groups.groupsCreate');
     }
 
     /**
@@ -34,7 +39,21 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $create = Groups::create([
+
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'number' => $request->get('number'),
+            'user_id' => Auth::user()->id,
+            
+        ]);
+
+        if($create) {
+
+            groups::all();
+
+            return redirect()->route('groups.index');
+        }
     }
 
     /**
@@ -43,9 +62,9 @@ class GroupsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(groups $group)
     {
-        //
+        return view('Groups.groupsShow')->with(['group' => $group]);
     }
 
     /**
@@ -54,9 +73,12 @@ class GroupsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(groups $group)
     {
-        //
+        return view('Groups.groupsEdit')
+        ->with([
+            'group' => $group,
+        ]);
     }
 
     /**
@@ -66,9 +88,12 @@ class GroupsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(GroupsRequest $request, groups $group)
     {
-        //
+        $group->fill($request->toArray());
+        $group->save();
+
+        return redirect()->route('groups.show', $group->id);
     }
 
     /**
@@ -77,8 +102,12 @@ class GroupsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Groups $group)
     {
-        //
+        if(auth()->user()->id == $group->user_id) {
+            $group->delete();
+        }
+
+        return redirect()->route('groups.index');
     }
 }
