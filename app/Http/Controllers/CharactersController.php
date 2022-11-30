@@ -41,13 +41,12 @@ class CharactersController extends Controller
     public function store(Request $request)
     {
 
-
          $create = Characters::create([
 
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'classe' => $request->get('classe'),
-            'user_id' => Auth::user()->id,
+            'user_id'=> Auth::user()->id,
             'pv' => (random_int(0, 15)),
             'magie' => (random_int(0, 15)),
             'force' => (random_int(0, 15)),
