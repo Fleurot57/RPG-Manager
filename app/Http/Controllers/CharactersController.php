@@ -123,6 +123,29 @@ class CharactersController extends Controller
         return redirect()->route('characters.index');
     }
 
+    public function levelup(Characters $character) {
+        {
+          
+                $character = Characters::validate([
+    
+                    'pv' => (random_int(0, 15)),
+                    'magie' => (random_int(0, 15)),
+                    'force' => (random_int(0, 15)),
+                    'agility' => (random_int(0, 15)),
+                    'intelligence' => (random_int(0, 15)),
+    
+                ]);
+
+                $character->save();
+                
+                return $character;
+    
+             
+        }
+
+
+    }
+
 
 }
 
