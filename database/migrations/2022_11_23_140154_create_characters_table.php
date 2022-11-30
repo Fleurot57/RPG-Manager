@@ -23,8 +23,7 @@ return new class extends Migration
             $table->integer('force');
             $table->integer('agility');
             $table->integer('intelligence');
-            $table->unsignedBigInteger('user_id');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id');;
             $table->timestamps();
         });
         
