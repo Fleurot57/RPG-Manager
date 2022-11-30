@@ -33,3 +33,5 @@ Route::get('logout', [LogoutController::class, 'logout'])->name('logout');
 Route::resource('characters', CharactersController::class);
 
 Route::resource('groups', GroupsController::class);
+
+Route::post('characters.show', [CharactersController::class, 'levelup'])->name('levelup');

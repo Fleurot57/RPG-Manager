@@ -68,7 +68,7 @@
                       <button type="submit">Supprimer</button>
                     </form>
                     
-                    <form method="POST" action="{{ url('levelUp') }}"> 
+                    <form method="POST" action="{{ route('levelup') }}"> 
                       @csrf
                       
                       <button type="submit">Level UP</a></button>
