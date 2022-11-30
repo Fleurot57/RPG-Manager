@@ -51,10 +51,15 @@
                     <form method="post" action="{{ route('characters.destroy', $character->id) }}">
                       @csrf
                       @method('DELETE')
-                      <button type="submit" >Supprimer</button>
+                      <button type="submit">Supprimer</button>
                     </form>
-                  
-                    <button>Level UP</button>
+                    
+                    <form method="POST" action="{{ url('levelUp') }}"> 
+                      @csrf
+                      
+                      <button type="submit">Level UP</a></button>
+                    </form>
+
                   </div>
                 </div>
               </div>

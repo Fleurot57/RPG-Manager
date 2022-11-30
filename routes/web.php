@@ -30,3 +30,5 @@ Route::post('confirmlogin', [LoginController::class, 'confirmlogin'])->name('con
 Route::get('logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::resource('characters', CharactersController::class);
+
+Route::post('levelUp', [LevelUp::class, 'levelUp']);

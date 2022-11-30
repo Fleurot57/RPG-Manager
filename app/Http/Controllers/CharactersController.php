@@ -121,4 +121,16 @@ class CharactersController extends Controller
 
         return redirect()->route('characters.index');
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+ 
