@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/charactersShow.css')}}" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=MedievalSharp">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Document</title>
+    <title>Détails du personnage</title>
 </head>
 
 @section('content')
@@ -21,14 +21,23 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/3819/3819263.png"
                   class="card-img-top w-50 mx-auto"/>
                 <div class="card-body">
-                  <div class="text-center">
-                    <h5 class="card-title">{{$character->name}}</h5>
-                    <p class="text-muted mb-4">{{$character->description}}</p>
-                  </div>
-                  <div>
+                  <div class="card-body pb-0">
                     <div class="d-flex justify-content-between">
-                      <span>Classe</span><span>{{$character->classe}}</span>
+                      <div>
+                        <p class="text-dark">{{$character->name}}</p>
+                      </div>
+                        <div>
+                          <p class="justify-content-end small text-muted">{{$character->classe}}</p>
+                        </div>
                     </div>
+                  </div>
+                  <hr class="my-2" />
+                  <div>
+                    <div class="text-center">
+                      {{-- <h5 class="card-title"></h5> --}}
+                      <p class="text-muted mb-4">{{$character->description}}</p>
+                    </div>
+                    <hr class="my-2" />
                     <div class="d-flex justify-content-between">
                       <span>Vie</span><span>{{$character->pv}}</span>
                     </div>
@@ -45,8 +54,13 @@
                         <span>intelligence</span><span>{{$character->intelligence}}</span>
                       </div>
                   </div>
+
+                  <hr class="my-2" />
+
+                  @auth
+                  @if(auth()->user()->id == $character->user_id)
                   <div class="d-flex justify-content-between total font-weight-bold mt-4">
-                    <button> <a href="{{ route('characters.edit', $character->id) }}">Modifier</a></button>
+                    <button><a href="{{ route('characters.edit', $character->id) }}">Modifier</a></button>
 
                     <form method="post" action="{{ route('characters.destroy', $character->id) }}">
                       @csrf
@@ -58,6 +72,8 @@
                       @csrf
                       
                       <button type="submit">Level UP</a></button>
+                    @endif
+                    @endauth
                     </form>
 
                   </div>
@@ -66,6 +82,7 @@
             </div>
           </div>
         </div>
-@endsection
+
 </body>
+@endsection
 </html>

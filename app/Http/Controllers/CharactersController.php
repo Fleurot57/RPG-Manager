@@ -28,7 +28,8 @@ class CharactersController extends Controller
      */
     public function create()
     {
-        return view('charactersCreate');
+        $characters = Characters::all();
+        return view('charactersCreate')->with(['characters' => $characters]);;
     }
 
     /**
@@ -46,7 +47,7 @@ class CharactersController extends Controller
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'classe' => $request->get('classe'),
-            'user_id' => auth()->id(),
+            'user_id' => Auth::user()->id,
             'pv' => (random_int(0, 15)),
             'magie' => (random_int(0, 15)),
             'force' => (random_int(0, 15)),
@@ -59,7 +60,6 @@ class CharactersController extends Controller
 
             $characters = Characters::all();
 
-            return view('characters')->with(['characters' => $characters]);
             return redirect()
                      ->back()
                      ->with('success', 'Ton personnage a été créé avec succès, tu peux partir à l\'aventure !');
@@ -117,7 +117,9 @@ class CharactersController extends Controller
      */
     public function destroy(characters $character)
     {
-        $character->delete();
+        if(auth()->user()->id == $character->user_id) {
+            $character->delete();
+        }
 
         return redirect()->route('characters.index');
     }

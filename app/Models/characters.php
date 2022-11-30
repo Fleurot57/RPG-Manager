@@ -21,5 +21,4 @@ class Characters extends Model
         'intelligence',
     ];
 
-    private string $name;
 }
