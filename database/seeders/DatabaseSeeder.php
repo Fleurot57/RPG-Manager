@@ -8,6 +8,7 @@ use App\Models\Characters;
 use App\Models\groups;
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -17,6 +18,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+    
+        groups::factory()->count(10)->create();
         Characters::factory()->count(10)->create();
 
     }

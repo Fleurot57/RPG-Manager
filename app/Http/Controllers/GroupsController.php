@@ -41,16 +41,18 @@ class GroupsController extends Controller
     {
         $create = Groups::create([
 
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'number' => $request->get('number'),
             'user_id' => Auth::user()->id,
+            'name' => $request->input('name'),
+            'number' => $request->get('number'),
+            'description' => $request->input('description'),
+            
+            
             
         ]);
 
         if($create) {
 
-            groups::all();
+            $groups = Groups::all();
 
             return redirect()->route('groups.index');
         }

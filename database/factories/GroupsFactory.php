@@ -17,7 +17,12 @@ class GroupsFactory extends Factory
     public function definition()
     {
         return [
-            //
+
+            'user_id' => $this->faker->unique()->numberBetween(1,50),
+            'name' => $this->faker->name(),
+            'description' => $this->faker->text(),
+            'number' => $this->faker->randomElement(['5', '10', '20', '25','30']),
+
         ];
     }
 }
