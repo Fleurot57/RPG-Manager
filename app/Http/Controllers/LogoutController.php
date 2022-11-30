@@ -11,7 +11,7 @@ class LogoutController extends Controller
 
         Auth::logout();
 
-        return view('login');
+        return view('Login.login');
 
     }
 }

@@ -18,7 +18,7 @@ class CharactersController extends Controller
     public function index()
     {
         $characters = Characters::all();
-        return view('characters')->with(['characters' => $characters]);
+        return view('Characters.characters')->with(['characters' => $characters]);
     }
 
     /**
@@ -29,7 +29,7 @@ class CharactersController extends Controller
     public function create()
     {
         $characters = Characters::all();
-        return view('charactersCreate')->with(['characters' => $characters]);;
+        return view('Characters.charactersCreate')->with(['characters' => $characters]);;
     }
 
     /**
@@ -76,7 +76,7 @@ class CharactersController extends Controller
     public function show(Characters $character)
     {
 
-        return view('charactersShow')->with(['character' => $character]);
+        return view('Characters.charactersShow')->with(['character' => $character]);
     }
 
     /**
@@ -88,7 +88,7 @@ class CharactersController extends Controller
     
      public function edit(characters $character)
     {
-        return view('charactersEdit')
+        return view('Characters.charactersEdit')
         ->with([
             'character' => $character,
         ]);

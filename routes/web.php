@@ -4,6 +4,7 @@ use App\Http\Controllers\CharactersController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\GroupsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,4 @@ Route::get('logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::resource('characters', CharactersController::class);
 
-Route::post('levelUp', [LevelUp::class, 'levelUp']);
+Route::resource('groups', GroupsController::class);
