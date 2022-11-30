@@ -29,7 +29,7 @@ class CharactersController extends Controller
     public function create()
     {
         $characters = Characters::all();
-        return view('Characters.charactersCreate')->with(['characters' => $characters]);;
+        return view('Characters.charactersCreate')->with(['characters' => $characters]);
     }
 
     /**
