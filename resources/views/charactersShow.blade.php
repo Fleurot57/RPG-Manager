@@ -60,7 +60,7 @@
                   @auth
                   @if(auth()->user()->id == $character->user_id)
                   <div class="d-flex justify-content-between total font-weight-bold mt-4">
-                    <button class="btn-delete"><a href="{{ route('characters.edit', $character->id) }}">Modifier</a></button>
+                    <button><a href="{{ route('characters.edit', $character->id) }}">Modifier</a></button>
 
                     <form method="post" action="{{ route('characters.destroy', $character->id) }}">
                       @csrf
