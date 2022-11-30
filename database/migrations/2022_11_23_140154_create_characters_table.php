@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
             $table->string('name');
             $table->string('description');
             $table->string('classe');
@@ -24,8 +23,11 @@ return new class extends Migration
             $table->integer('force');
             $table->integer('agility');
             $table->integer('intelligence');
+            $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
+        
     }
 
     /**
