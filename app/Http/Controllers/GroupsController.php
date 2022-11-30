@@ -52,7 +52,7 @@ class GroupsController extends Controller
 
         if($create) {
 
-            groups::all();
+            $groups = Groups::all();
 
             return redirect()->route('groups.index');
         }
